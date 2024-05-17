@@ -1,0 +1,55 @@
+<div>
+    <h2>Hello World!!!</h2>
+
+    <select (change)="changemodule($event)">
+        <option value="customer">Customer</option>
+        <option value="supplier">Supplier</option>
+        <option value="user">User</option>
+    </select>
+
+
+    @if(modulename == 'customer'){
+        <h2>Customer page</h2>
+        <ul>
+
+            @for(item of customerlist();track item.id)
+            {
+                <li>{{item.name}}</li>
+            }
+
+            <br><br>
+
+            @for(item of customers;track item.id)
+            {
+                <li>{{item.name}}</li>
+            }
+
+            <br><br>
+
+            @for(item of customers;track item.id;let idx=$index)
+            {
+                <li>#{{idx}} - {{item.id}} - {{item.name}} - {{item.country}}</li>
+            }
+
+            <br><br>
+
+            @for(item of customers;track item.id;let idx=$index,count=$count,first=$first,last=$last)
+            {
+                <h3>count of customers :{{count}}</h3>
+                <h3>first of customers :{{first}}</h3>
+                <h3>last of customers :{{last}}</h3>
+                <li>#{{idx}} - {{item.id}} - {{item.name}} - {{item.country}}</li>
+            }
+        </ul>
+    }
+    @else if(modulename == 'supplier')
+    {
+        <h2>Supplier page</h2>
+    }
+    @else if(modulename == 'user')
+    {
+        <h2>User page</h2>
+    }
+
+
+</div>
