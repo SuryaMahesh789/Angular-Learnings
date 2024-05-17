@@ -1,0 +1,272 @@
+What ?? (https://angular.dev/)
+------------------------------------------------------------------------------------------------
+
+Angular is a web framework that empowers developers to build fast, reliable applications.
+
+------------------------------------------------------------------------------------------------
+
+js - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+
+
+Classes are a template for creating objects. They encapsulate data with code to work on that data.
+
+------------------------------------------------------------------------------------------------
+
+
+ts - https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
+
+Types by Inference
+TypeScript knows the JavaScript language and will generate types for you in many cases. For example in creating a variable and assigning it to a particular value, TypeScript will use the value as its type.
+
+let helloWorld = "Hello World";
+        
+let helloWorld: string
+
+
+TypeScript supports an extension of the JavaScript language, which offers places for you to tell TypeScript what the types should be.
+
+For example, to create an object with an inferred type which includes name: string and id: number, you can write:
+
+const user = {
+  name: "Hayes",
+  id: 0,
+};
+
+
+
+You can explicitly describe this object’s shape using an interface declaration:
+
+interface User {
+  name: string;
+  id: number;
+}
+
+
+You can then declare that a JavaScript object conforms to the shape of your new interface by using syntax like : TypeName after a variable declaration:
+
+const user: User = {
+  name: "Hayes",
+  id: 0,
+};
+
+
+
+If you provide an object that doesn’t match the interface you have provided, TypeScript will warn you:
+
+interface User {
+  name: string;
+  id: number;
+}
+ 
+const user: User = {
+  username: "Hayes",
+Object literal may only specify known properties, and 'username' does not exist in type 'User'.
+  id: 0,
+};
+
+
+Since JavaScript supports classes and object-oriented programming, so does TypeScript. You can use an interface declaration with classes:
+
+
+Since JavaScript supports classes and object-oriented programming, so does TypeScript. You can use an interface declaration with classes:
+
+interface User {
+  name: string;
+  id: number;
+}
+ 
+class UserAccount {
+  name: string;
+  id: number;
+ 
+  constructor(name: string, id: number) {
+    this.name = name;
+    this.id = id;
+  }
+}
+ 
+const user: User = new UserAccount("Murphy", 1);
+
+
+
+Composing Types
+With TypeScript, you can create complex types by combining simple ones. There are two popular ways to do so: with unions, and with generics.
+
+Unions
+With a union, you can declare that a type could be one of many types. For example, you can describe a boolean type as being either true or false:
+
+type MyBool = true | false;
+
+type WindowStates = "open" | "closed" | "minimized";
+type LockStates = "locked" | "unlocked";
+type PositiveOddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;
+
+
+To learn the type of a variable, use typeof:
+
+Type	Predicate
+string	typeof s === "string"
+number	typeof n === "number"
+boolean	typeof b === "boolean"
+undefined	typeof undefined === "undefined"
+function	typeof f === "function"
+array	Array.isArray(a)
+
+
+For example, you can make a function return different values depending on whether it is passed a string or an array:
+
+function wrapInArray(obj: string | string[]) {
+  if (typeof obj === "string") {
+    return [obj];
+            
+(parameter) obj: string
+  }
+  return obj;
+}
+
+
+Generics
+Generics provide variables to types. A common example is an array. An array without generics could contain anything. An array with generics can describe the values that the array contains.
+
+type StringArray = Array<string>;
+type NumberArray = Array<number>;
+type ObjectWithNameArray = Array<{ name: string }>;
+
+
+Structural Type System
+One of TypeScript’s core principles is that type checking focuses on the shape that values have. This is sometimes called “duck typing” or “structural typing”.
+
+In a structural type system, if two objects have the same shape, they are considered to be of the same type.
+
+interface Point {
+  x: number;
+  y: number;
+}
+ 
+function logPoint(p: Point) {
+  console.log(`${p.x}, ${p.y}`);
+}
+ 
+// logs "12, 26"
+const point = { x: 12, y: 26 };
+logPoint(point);
+
+
+The point variable is never declared to be a Point type. However, TypeScript compares the shape of point to the shape of Point in the type-check. They have the same shape, so the code passes.
+
+The shape-matching only requires a subset of the object’s fields to match.
+
+const point3 = { x: 12, y: 26, z: 89 };
+logPoint(point3); // logs "12, 26"
+ 
+const rect = { x: 33, y: 3, width: 30, height: 80 };
+logPoint(rect); // logs "33, 3"
+ 
+const color = { hex: "#187ABF" };
+logPoint(color);
+Argument of type '{ hex: string; }' is not assignable to parameter of type 'Point'.
+  Type '{ hex: string; }' is missing the following properties from type 'Point': x, y
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+angular new control flow syntax - using @
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+Components
+edit
+The fundamental building block for creating applications in Angular.
+
+
+Components provide structure for organizing your project into easy-to-understand parts with clear responsibilities so that your code is maintainable and scalable.
+
+Defining a Component
+Every component has the following core properties:
+
+A @Componentdecorator that contains some configuration
+An HTML template that controls what renders into the DOM
+A CSS selector that defines how the component is used in HTML
+A TypeScript class with behaviors such as managing state, handling user input, or fetching data from a server.
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+Defer views - new template syntax that allows developers to define the circimstances under which specific elements or Components or components should load 
+more advanced than conventional lazy loading methods whick usually load components in response to changes the path 
+
+
+Build performance with ESBUILD 
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+app component .html - router-outlet 
+
+app component.ts - import the router-outlet and the component  
+
+app.routes.ts - import the routes - path and the component 
+
+ng serve 
+
+------------------------------------------------------------------------------------------------
+
+<select (change)="changemodule($event)">
+    <option value="customer">Customer</option>
+    <option value="supplier">Supplier</option>
+    <option value="user">User</option>
+</select>
+
+@if(modulename == 'customer'){
+    <h2>Customer page</h2>
+}@else if(modulename == 'supplier'){
+    <h2>Supplier page</h2>
+}@else if(modulename == 'user'){
+    <h2>User page</h2>
+}
+
+
+(change)="changemodule($event)": This is an event handler attached to the <select> element. It specifies that when the selection within the dropdown menu changes (i.e., when the user selects a different option), the changemodule function will be called, passing the event object ($event) as a parameter. The event object contains information about the event, such as the selected option.
+
+
+home.component.ts 
+-----------------
+
+modulename='customer';
+
+changemodule(event:any){
+  this.modulename=event.target.value;
+}
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------

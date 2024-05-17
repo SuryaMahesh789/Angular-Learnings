@@ -1,0 +1,881 @@
+[Version Check]
+
+npm -v
+node -v
+
+
+[Globally installation CLI]
+npm install -g @angular/cli
+
+
+
+[New project within the main folder]
+npx ng new project_name 
+npm install
+
+npx ng version
+
+cd project_name
+
+[Load]
+npx ng serve
+
+npm install
+
+
+[Angular materials installation]
+[install angular materials]
+[version = 17.1.1]
+npx ng add @angular/material@17.2.0
+
+npm install -g @angular/cli
+
+
+npm cache clean --force
+
+
+[Bootstrap installation]
+[To use some libraries - import them in app.component.ts and include the same in @Componenet:the imports] 
+
+npm install bootstrap bootstrap-icons
+
+
+[in angular.json]
+
+"styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.scss",
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+
+
+
+[FOLDER STRUCTURE & FILES]
+--------------------------------
+
+
+1. parent folder will be the main project folder [ crew-management]
+2. .angular -> ignore
+3. .vscode -> we would see if we are using vs code -> ignore this folder -> internally caching memory management
+4. node_modules 
+-> packages will be installed here 
+-> no need of going through all the materials 
+-> unless we are making any changes in the core libraries/modules 
+-> rare -> else ignore the folder 
+-> npm install or ng install we would see the packages
+
+5. .editorconfig -> custom editor changes in this file -> if not expert don't touch 
+6. .gitignore -> we can add folders/files that we need to ignore while comitting 
+
+
+7. angular.json 
+        -> configuration details
+        -> schema located , node_modules located , version number 
+        -> when we generate a component we can add a prefix 
+        -> root -> source root -> leave it 
+        -> schematics -> kind of style for the angular component 
+        -> projects -> project name
+        -> build -> build specifications 
+
+
+
+        -> while deploying the configurations 
+        -> configuring the styles,js or for pipeline deployments  
+        -> settings specific to the project 
+
+8.package.json 
+        -> installed dependencies of the project 
+        -> npm install bootstrap bootstrap-icons -> registers in package.json inside dependencies
+
+9. package-lock.json 
+    -> replica of package.json -> granular level 
+    -> dev dependencies detailed broken down 
+    -> don't touch manually 
+
+10. tsconfig.app.json 
+        -> tells u typescript configuration 
+
+11. tsconfig.spec.json 
+        -> tells u typescript test specific configuration 
+
+12. ReadME.md 
+      -> documantation of project 
+14. SRC 
+         source code of the project 
+         
+         app -> actual code of the project 
+             -> each component in Angular 
+             -> has four files 
+                    -> .html -> template 
+                    -> .scss/.css/.less -> style 
+                    -> .spec.ts -> unit test file 
+                    -> .ts => component class / logical piece of component 
+
+
+                    app.component.ts 
+                        -> selector -> app-root 
+                    app.component.spec.ts 
+                        -> unit testing, jasmine , karma
+         
+         assets ->folder for assets puclic -> can access ->  images
+         
+         favicon -> browser icon bar
+
+         index.html  ->  single page application
+        -> one html file 
+        -> <app-root> -> first component to be initialized 
+
+
+        main.ts  -> starts ur application -> which is the first component to be rendered in project 
+                  entry to the project 
+
+              comes to main.ts then AppComponent -> index.html -> <app-root>
+
+      styles.css 
+            .css/.less/.scss - global stylings for project 
+
+          
+
+      
+npx ng version
+
+Angular CLI Commands 
+--------------------
+
+npx ng version  -> project configuration
+npx ng new <project_name>
+ng generate 
+            component
+            module
+            service 
+            pipe 
+            directive 
+            routing 
+            model 
+            interface 
+            class 
+
+
+npx ng test -> to run all the available unit tests  
+
+[files will end with spec.ts ]
+
+
+npx ng serve -> starts a dev server and serves the application on local host 
+
+npx ng build -> when production is ready 
+        dist folder 
+        index.html 
+        style.css 
+        polyfills.js 
+        main.js
+
+
+npx ng add @angular/material -> adding packages and modules of Angular 
+
+npx ng update  -> update the angular versions 
+
+
+
+
+
+Angular Components 
+-------------------
+Angular components are declared using @component decorator
+@component decorator can have multiple inputs/parameters 
+ 
+building blocks in angular 
+forming ui controls like forms buttons other elements 
+
+each component have associated HTML Template that defines the view of UI 
+
+selector - name which can be used or referred in application 
+standalone  - by default all angular components are standalone 
+            - no need to declare inside the module 
+            - directly use them in aplications 
+            imports - provide required modules for this component 
+templateUrl - HTML for this component 
+styleUrl    - CSS for this component (stylesheet or link for styles of this component)
+styles - define inline styles 
+template - limited HTML (   template: '<h1>App Component</h1>')
+
+
+component structure 
+
+<component_name>.component.html  - Template/HTML/UI 
+<component_name>.component.css/scss  - Stylesheet for the component 
+<component_name>.component.spec.ts  - unit tests for the component 
+<component_name>.component.ts - class for the compomnent/logic/data/interactions 
+
+by default all the components are standalone 
+use them anywhere in the applications 
+no need to inject in a module 
+
+
+component data flow 
+@Input - sending dsata to the component 
+@Output - sending data from the component 
+
+
+components data binding 
+
+class - template - class 
+
+
+component lifecycle methods 
+
+creation to destruction [ 8 stages ]
+
+ngOnInit - once component is initalized what should be done 
+
+ngDestroy - 
+
+
+
+Modular Architecture 
+---------------------
+
+prev versions - app modules 
+angular v17 version - app components instead of app modules 
+No more ng modules no more default app modules 
+everything is standalone 
+
+
+
+Ng Module - fundamental building block of an angular application is NgModules 
+    - encapsulates componets directives pipes services 
+
+
+    AppModule 
+      -  everey angular application used to have atleast one modules - one root module 
+
+
+
+feature Modules 
+
+Lazy Loading 
+    - modules are lazy loaded can be loaded on demand 
+    - significantly improves the application's initial loading time 
+
+
+Shared Modules - used across various modules in the application 
+
+Core Module 
+
+
+
+
+Angular 17 - Generate Components 
+--------------------------------
+
+ng generate <component_name>
+
+angular 17 - components are standalone by default 
+prev versions  - not standalone by default 
+
+to disable the standalone components 
+npx ng g c <component_name> --standalone false 
+
+npx ng generate <component_name>
+
+go to project name -> src then command 
+(crew-management -> src -> )
+npx ng g c crew-members
+
+cd app
+create a new component inside the app 
+npx ng g c crew-members 
+
+npx ng generate component crew-members 
+
+
+cd app 
+
+npx ng g m AppModule
+
+move app-module.module.ts to app level and delete app-module 
+
+npx ng g c crew-time-table --standalone false
+
+To make all the angular components not to be standalone default 
+     
+    - go to angular.json -> projects -> schematics -> 
+    - add new property as "standalone":false 
+
+
+components are standalone by default- no module required - else will get error 
+
+No AppModule vs AppModule
+-------------------------
+
+Angular 17 - projects are standalone - not really dependent om the modules 
+not mandatory have AppModule in Angular 17 
+
+but we can still  create modules custom modules, lazy loading modules 
+
+
+
+Angular 17 vs Angular 16 and below
+----------------------------------
+
+16 and below - mandatory to have atleast one module 
+      AppModule
+      main.ts -> Bootstrap  AppModule 
+
+17 
+Everything is standalone 
+no mandatory module is required 
+no AppModule Anymore 
+we can create our own custom modules 
+
+is backward compatible 
+    - everything we are doing i  angular 16 is still valid 
+
+    - main.ts -> Bootstrap AppComponent
+
+
+AppRoutes vs AppRoutingModule 
+-----------------------------
+
+Angular 16 and below - needed atleast one module AppModule 
+The routes were defined in AppRoutingModule and imported into the AppModule 
+AppModule in main.ts  
+
+Angular17 is standalone - not dependent on Modules 
+- so will not see AppRoutingModule file /AppModule file 
+
+- instead we have AppRoutes file - definitions of routes 
+
+- define app.routes.ts
+        - we import routes in app.config.ts 
+
+App.routes.ts - AppRoutes
+
+App.routes    - App.config.ts -> providers :provideRouter(routes)
+
+ appconfig is what used everywhere in application 
+    1.routes passed in App.config.ts 
+    2.Appconfig is passed in main.ts 
+ 
+
+we cam create the routing module just like we us eth routing module in 16 and below versions 
+npx ng g module timetable --routing
+
+Angular 17 standalone Components
+--------------------------------
+
+standalone components in angular are components and can be independent and can be used in various parts of an application without being tied 
+to a specific module or feature 
+
+standalone components designed to encapsulate specific functionality or featrees making them independent and self-contained
+
+    -reusable,can be used across several parts of the application or evn in multiple projects 
+    -not like components tied to some specific module these won't have any dependencies versatile,adaptable to diff contexts 
+    -integration is easy and effortless 
+    - unit testing easy since focuses on specific functionalities 
+
+
+generate standalone components :- 
+
+npx ng g c <component_name>
+
+creates new folder with all it's files
+npx ng g c crew 
+
+no seperate folder with in the same folder 
+npx ng g c crew-regions --flat
+
+to use this we need atleast on module
+npx ng g c crew-designations --standalone false
+
+will need a module mandatory 
+
+
+npx ng g c crew-designs --standalone false --module=flights 
+
+
+npx ng g c <component-name> --module<module_name>
+
+
+we will need a module mandatory 
+
+npx ng g c <component_name> --standalone false --module=<mocule_name>
+npx ng g c crew-designs --standalone false --module=flights  
+
+
+How to use components - parent child communication
+---------------------------------------------------
+
+
+npx ng g c <component-name> 
+  - by default selector for component has prefix as [app]<component-name>
+  - to change go to angular.json -> prefix -> can customize prefix .
+  - each component has unique selector name 
+
+
+
+import child component into the parent component in [<parent-component-name].component.ts file 
+to include component with in some component make the component - standalone:true 
+
+code - import { CrewComponent } from './crew/crew.component';
+    - imports:[CrewComponent]
+
+<child-component-name></child-component-name> include this in desired component's HTML <parent-component-name>.component.html 
+      code - <app-crew></app-crew> in app.component.html 
+
+
+Parent Child communication
+--------------------------
+
+Input  - receiving inputs to the component 
+Output  - sending dat from component to parent 
+
+
+1.Crew  (parent  )
+    - 1.1 Crew-Designations (child) 
+
+
+
+child to parent communication
+-----------------------------
+
+1. Text 
+........
+
+
+        @Input
+        -------
+        child component HTML file -  <p>Name : {{name}}</p>
+        child component ts file - @Input() name:string="";
+        parent component ts file -  nameforcomponent:string="Ranjith Kumar";
+        parent component HTML - <child-component-name [name]="nameforcomponent"> </app-crew-designations>
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+generate modules 
+
+
+ng g module <module_name>
+
+
+ng g c <component_name>
+
+to mention the component to be in module 
+
+ng g c <component_name> -m <module_name>
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+1.feature modules 
+
+payments 
+users 
+crew 
+airlines 
+invoices 
+
+
+2.shared modules 
+
+header 
+authentication
+authorization 
+footer 
+
+
+3.lazy loading modules 
+ondemand 
+homepage 
+    users page 
+cart/checkout page
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+use modules and components 
+
+1. export the components u want to use 
+
+2. import the required modules in the component 
+
+3.use the selector to map the component 
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+DATA BINDING  
+
+one way data binding 
+        1. interpolation `{{}}`  - one way data binding
+
+
+        from component class  to html template
+
+
+        embedding expressions in the template 
+        updates the view with the component's data 
+
+
+        2. property binding  `[property]`   - one way data binding
+
+        property is ntg but the attributes of the elements in the templates 
+
+        from component class to the template's element's property(attributes)
+
+        one way data binding value of a component property to an html element property 
+
+        updates the view with the component's data 
+
+        used to set the attributes of the html elements 
+
+        it allows dynamic modification of element attributes based on the component data 
+
+
+
+
+        3. event binding `(event)`    - one way data binding
+
+        allows the components to respond to user actions 
+
+        onmouseover , onfocus ,onclick etc - binding an event from the component class to the template element's event
+
+
+two way data binding
+
+data flows from the component class to the template and back from the template (html/ui) to component (class)
+       
+       
+        4. two way data binding  (`[(ngModel)]`)
+
+        property binding and event binding 
+
+        requires importing formsmodule
+
+        allows tha data to flow from the component to the view and view to the component 
+
+
+        5. template reference variables (`#var`)
+
+        template variables capture the references to html elements ot angualr components 
+        they ca be used to access the element or component in the template or trigger methods 
+
+
+        6. exptression context in templates 
+
+        you have to access to the component's properties and methods 
+        this allows you to perform calculations, call methods and use dynamic data in the template 
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+lazy loading modules 
+
+lazy loading is technique in angular that allows modules to be loaded on demand 
+improving the application performance by only loading the modules when they are needed 
+
+loaded on their demand 
+
+
+how to generate the lazy loading module 
+
+ng generate module 
+
+
+route configuration 
+
+const routes:Routes = [
+{path:'lazy',loadChildren:()=>import('./lazy/lazy.module').then(m=>m.LazyModule)},
+];
+
+
+
+
+ 1. lazy oading module will be loaded only when the user goes to the route 
+
+ 2. generate a lazy loading module 
+
+ ng g module module_name --routing 
+
+
+3. inside lazy loading modules we can have regular / standalone components 
+
+
+angular 17 by default it gives standalone components 
+
+
+ng g c admin/add-user 
+ng g c admin/edit-user --standalone false
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+lazy loading is a technique in angular that allows components to be loaded on-demand improving application's performance by only loading the components when they are needed 
+
+to generate the lazy component 
+
+ng generate component 
+ng generate component --standalone false 
+
+
+add routes as lazy loading module 
+
+check 
+
+go to inspect -> network -> search for chunk 
+
+change  the routes as the normal component and check the same 
+
+u can find the difference 
+
+normal components are loaded prior where as the lazy loading components are loaded on demand 
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+*Interpolation {{}}*
+--------------------
+
+Angular's interpolation is a one way data binding technique 
+it allows you to embed expressions within double curly braces `{{}}` in the template 
+
+interpolation facilitates the one way flow of data from the component to the view 
+
+Displaying values with interpolation
+
+Interpolation refers to embedding expressions into marked up text. By default, interpolation uses the double curly braces {{ and }} as delimiters.
+
+currentCustomer = 'Maria';
+
+<h3>Current customer: {{ currentCustomer }}</h3>
+
+Angular replaces currentCustomer with the string value of the corresponding component property. In this case, the value is Maria.
+
+<p>{{title}}</p>
+<div><img alt="item" src="{{itemImageUrl}}"></div>
+
+
+
+*Data Binding*  (https://angular.io/guide/binding-syntax#data-binding-and-html)
+-------------- 
+
+interpolation is a way to bind component data to the view 
+it dynamically displays the value of a component property in the HTML Template 
+
+
+Data binding and HTML
+
+Data binding automatically keeps your page up-to-date based on your application's state.
+You use data binding to specify things such as the source of an image, the state of a button,
+or data for a particular user.
+
+
+Developers can customize HTML by specifying attributes with string values. In the following example, class, src, and disabled modify the <div>, <img>, and <button> elements respectively.
+
+<div class="special">Plain old HTML</div>
+<img src="images/item.png">
+<button disabled>Save</button>
+
+
+
+Use data binding to control things like the state of a button:
+
+<!-- Bind button disabled state to `isUnchanged` property -->
+<button type="button" [disabled]="isUnchanged">Save</button>
+
+
+Attribute: Attributes are defined by HTML and are used to customize a tag.
+
+Properties: HTML DOM properties are values (of HTML Elements) that you can set or change.
+
+Attributes are defined by HTML, but properties are defined by the DOM.
+
+The attribute’s main role is to initializes the DOM properties. So, once the DOM initialization complete, the attributes job is done.
+
+Example 1: an <input>
+When the browser renders <input type="text" value="Sarah">, it creates a corresponding DOM node with a value property and initializes that value to "Sarah".
+
+<input type="text" value="Sarah">
+
+
+When the user enters Sally into the <input>, the DOM element value property becomes Sally. However, if you look at the HTML attribute value using input.getAttribute('value'), you can see that the attribute remains unchanged —it returns "Sarah".
+
+The HTML attribute value specifies the initial value; the DOM value property is the current value.
+
+
+Example 2: a disabled button
+A button's disabled property is false by default so the button is enabled.
+
+When you add the disabled attribute, you are initializing the button's disabled property to true which disables the button.
+
+
+<button disabled>Test Button</button>
+
+
+Adding and removing the disabled attribute disables and enables the button. However, the value of the attribute is irrelevant, which is why you cannot enable a button by writing <button disabled="false">Still Disabled</button>.
+
+To control the state of the button, set the disabled property instead.
+
+Property and attribute comparison
+Though you could technically set the [attr.disabled] attribute binding, the values are different in that the property binding must be a boolean value, while its corresponding attribute binding relies on whether the value is null or not. Consider the following:
+
+
+<input [disabled]="condition ? true : false">
+<input [attr.disabled]="condition ? 'disabled' : null">
+
+
+
+<button [disabled]="false">Test Button</button>
+&nbsp;
+
+<button [disabled]="true">Test Button</button>
+&nbsp;
+
+<button enabled>Test Button</button>
+
+<input [disabled]="1 ? false : true">
+<input [disabled]="1 ? true : false">
+
+<input [attr.disabled]="0 ? true : false">
+<input [attr.disabled]="0 ? false : true">
+
+
+Types of data binding
+Angular provides three categories of data binding according to the direction of data flow:
+
+From source to view
+From view to source
+In a two-way sequence of view to source to view
+
+
+Use [] to bind from source to view
+Use () to bind from view to source
+Use [()] to bind in a two-way sequence of view to source to view
+
+
+*expression evaluation*
+
+the expression within the double curly braces is evaluated and its result is converted to a string for display 
+
+
+*Simple expression*
+
+interpolation supports simple expressions variables and method calls 
+
+`{{firstName+lastName}}`
+
+impilicit conversion
+
+
+
+1. interpolation is a technique written in between the double curly braces 
+
+{{}} - inside the template 
+
+
+2. data flow from component (class) to template 
+
+3. Security check for injections by escaping HTML entities 
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+*Property Binding*
+
+https://angular.io/guide/property-binding
+
+
+
+allows us to dynamically assign values to HTML element properties based on data or expresions defined in component class 
+
+data flow in one direction from the component class to template allowing you to update the properties of HTML elements based on changes in component data 
+
+
+property binding is primarily used to bind to HTML element properties such as 
+
+src,href,disabled,value.innerHTML 
+
+
+property binding - dynamically set CSS styles,and otrher attributes of HTML elements based on the component data 
+
+
+enclosing property name in square brackets within template expressions 
+
+
+Property binding
+
+Property binding in Angular helps you set values for properties of HTML elements or directives. Use property binding to do things such as toggle button features, set paths programmatically, and share values between components.
+
+Property binding moves a value in one direction, from a component's property into a target element property.
+
+To bind to an element's property, enclose it in square brackets, [], which identifies the property as a target property.
+
+A target property is the DOM property to which you want to assign a value.
+
+To assign a value to a target property for the image element's src property, type the following code:
+
+<img alt="item" [src]="itemImageUrl">
+
+In most cases, the target name is the name of a property, even when it appears to be the name of an attribute.
+
+
+
+In this example, src is the name of the <img> element property.
+
+The brackets, [], cause Angular to evaluate the right-hand side of the assignment as a dynamic expression.
+
+Without the brackets, Angular treats the right-hand side as a string literal and sets the property to that static value.
+
+To assign a string to a component's property (such as the childItem of the ItemDetailComponent), you use the same bracket assignment notation:
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+https://angular.io/guide/event-binding
+
+
+Event binding lets you listen for and respond to user actions such as keystrokes, mouse movements, clicks, and touches.
+
+
+To bind to an event you use the Angular event binding syntax. This syntax consists of a target event name within parentheses to the left of an equal sign, and a quoted template statement to the right.
+
+the target event name is click and the template statement is onSave().
+
+<button (click)="onSave()">Save</button>
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+apache charts for angular 
+https://echarts.apache.org/examples/en/index.html#chart-type-line
+
+
+
+
+
+
+
+
+
